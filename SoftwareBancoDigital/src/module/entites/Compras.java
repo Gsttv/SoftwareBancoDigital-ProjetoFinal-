@@ -1,5 +1,7 @@
 package module.entites;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 public class Compras {
 
@@ -7,10 +9,11 @@ public class Compras {
     private String nomeCompra;
     private Double valor;
 
+    private static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     public Compras(Date dataCompra, String nomeCompra, Double valor) {
         this.dataCompra = dataCompra;
-        this.nomeCompra = nomeCompra;
+        this.nomeCompra =  nomeCompra;
         this.valor = valor;
     }
 
