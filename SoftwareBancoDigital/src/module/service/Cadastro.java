@@ -8,20 +8,9 @@ public class Cadastro {
     private String login;
     private Integer senha;
 
-    public Cadastro() {
-        try {
-            Scanner sc = new Scanner(System.in);
-            System.out.print("Digite o login para cadastrar: ");
-            this.login = sc.next();
-            System.out.print("Digite a senha para cadastrar: ");
-            this.senha = sc.nextInt();
-        }catch (InputMismatchException e){
-            System.out.println("Senha deve possuir apenas numeros");
-            System.exit(1);
-        }finally {
-            System.out.println("Cadastro realizado com sucesso");
-        }
-
+    public Cadastro(String login, Integer senha) {
+        this.login = login;
+        this.senha = senha;
     }
 
     public String getLogin() {

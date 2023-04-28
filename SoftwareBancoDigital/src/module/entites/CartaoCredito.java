@@ -62,7 +62,7 @@ public class CartaoCredito {
         for (Compras c:comprasRealizadas) {
             sb.append("Nome: "+c.getNomeCompra()+", ");
             sb.append("Valor: "+c.getValor()+", ");
-            sb.append("Data: "+c.getDataCompra()+"\n");
+            sb.append("Data: "+sdf.format(c.getDataCompra())+"\n");
         }
         sb.append("Valor total da fatura: "+this.getValorCompras());
         return sb.toString();

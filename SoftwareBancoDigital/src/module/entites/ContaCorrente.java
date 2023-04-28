@@ -4,8 +4,9 @@ public class ContaCorrente extends Conta {
 
     public double chequeEspecial;
 
-    public ContaCorrente(int numeroDaConta, Titular titular, double chequeEspecial) {
-        super(chequeEspecial, numeroDaConta, titular);
+    public ContaCorrente(double saldo, int numeroDaConta, Titular titular) {
+        super(saldo, numeroDaConta, titular);
+        this.chequeEspecial = 1000.00;
     }
 
     public double getChequeEspecial() {
@@ -46,7 +47,18 @@ public class ContaCorrente extends Conta {
         }
 
         }
-        public double verificarSaldo () {
+
+    @Override
+    public String dados(Titular titular) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Nome: " + titular.getNome()+", ");
+        sb.append("CPF: " + titular.getCpf()+", ");
+        sb.append("Saldo: " + this.getSaldo());
+        return sb.toString();
+
+    }
+
+    public double verificarSaldo () {
             return this.getSaldo();
         }
     }

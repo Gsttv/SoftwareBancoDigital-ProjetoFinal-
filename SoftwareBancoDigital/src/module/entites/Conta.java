@@ -7,7 +7,7 @@ public abstract class Conta {
 
 
     public Conta(double saldo, int numeroDaConta, Titular titular) {
-        this.saldo = 0.0;
+        this.saldo = saldo;
         this.numeroDaConta = numeroDaConta;
         this.titular = titular;
     }
@@ -22,6 +22,5 @@ public abstract class Conta {
     public abstract int getNumeroDaConta();
     public abstract void sacar(double valor);
     public abstract void depositar(double valor);
-
-
+    public abstract String dados(Titular titular);
 }
