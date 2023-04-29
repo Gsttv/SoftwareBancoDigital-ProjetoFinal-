@@ -1,10 +1,8 @@
 package app;
 
+import module.enums.TipoDaTranferencia;
 import module.entites.*;
-import module.service.LoginNaConta;
-import module.service.Cadastro;
-import module.service.Pagamento;
-import module.service.Segurança;
+import module.service.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -66,7 +64,9 @@ public class App {
         System.out.println("Deseja fazer um deposito?(y/n)");
         char resp = sc.next().charAt(0);
         if (resp=='y'){
-            novaConta.depositar(2500.00);
+            System.out.print("Qual o valor do deposito?: ");
+            double valorDeposito = sc.nextDouble();
+            novaConta.depositar(valorDeposito);
             System.out.println("Dados da conta após o deposito");
             System.out.println(novaConta.dados(titular));
         }
@@ -89,6 +89,11 @@ public class App {
         System.out.println("");
         System.out.println("Realizando o pagamento da fatura...");
         Pagamento.realizarPagamentoFatura(2500.00, novaConta, cartaoCredito);
+
+        Transferencia tranferencia = new Transferencia(100.00,112, TipoDaTranferencia.TED,novaConta);
+        tranferencia.realizarTranferencia(tranferencia);
+        Emprestimo emprestimo = new Emprestimo(2000.00,sdf.parse("29/04/2023"),12,titular);
+        System.out.println(emprestimo.toString());
 
 
     }

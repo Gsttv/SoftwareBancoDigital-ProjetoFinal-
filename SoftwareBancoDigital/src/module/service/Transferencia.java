@@ -1,5 +1,6 @@
 package module.service;
 
+import module.enums.TipoDaTranferencia;
 import module.entites.Conta;
 
 import java.util.ArrayList;
@@ -9,11 +10,11 @@ public class Transferencia {
 
     private Double valorTransferido;
     private Integer numeroDaContaDestino;
-    private String tipoDaTranferencia;
+    private TipoDaTranferencia tipoDaTranferencia;
     private Conta contaDeOrigem;
     private List<Transferencia> historicoDeCompras = new ArrayList<Transferencia>();
 
-    public Transferencia(Double valorTransferido, Integer numeroDaContaDestino, String tipoDaTranferencia, Conta contaDeOrigem) {
+    public Transferencia(Double valorTransferido, Integer numeroDaContaDestino, TipoDaTranferencia tipoDaTranferencia, Conta contaDeOrigem) {
         this.valorTransferido = valorTransferido;
         this.numeroDaContaDestino = numeroDaContaDestino;
         this.tipoDaTranferencia = tipoDaTranferencia;
