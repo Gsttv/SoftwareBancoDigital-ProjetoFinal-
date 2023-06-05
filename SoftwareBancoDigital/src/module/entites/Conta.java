@@ -23,4 +23,6 @@ public abstract class Conta {
     public abstract void sacar(double valor);
     public abstract void depositar(double valor);
     public abstract String dados(Titular titular);
+
+    public abstract double rendimento();
 }

@@ -9,6 +9,7 @@ import module.service.Segurança;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -22,7 +23,19 @@ public class App {
         System.out.print("Login: ");
         String loginCadastro = sc.next();
         System.out.print("Senha: ");
-        int senhaCadastro = sc.nextInt();
+        int senhaCadastro = 0;
+        boolean senhaValida = false;
+        while (!senhaValida) {
+            try {
+                senhaCadastro = sc.nextInt();
+                senhaValida = true;
+            } catch (InputMismatchException e) {
+                System.out.println("A senha deve conter apenas numeros, digite a senha novamente");
+                sc.next();
+
+            }
+        }
+
         Cadastro novoUsuario = new Cadastro(loginCadastro, senhaCadastro);
         System.out.println();
         System.out.println("-----REALIZE O LOGIN NA CONTA CADASTRADA------");
@@ -48,25 +61,27 @@ public class App {
         System.out.println("-----INSIRA OS DADOS DA NOVA CONTA------");
         System.out.println("Digite o nome e cpf para cadastro como titular");
         System.out.print("Nome: ");
-        String nome = sc.next();
+        sc.nextLine();
+        String nome = sc.nextLine();
         System.out.print("CPF: ");
-        String cpf = sc.next();
+
+        String cpf = sc.nextLine();
         Titular titular = new Titular(nome, cpf);
         System.out.print("Digite o numero da conta: ");
         int numeroConta = sc.nextInt();
-        System.out.print("Digite o saldo incial: ");
-        double saldoInicial = sc.nextDouble();
-        Conta novaConta = new ContaCorrente(saldoInicial, numeroConta, titular);
-
+        double saldoInicial = 0.0;
+        ContaCorrente novaConta = new ContaCorrente(saldoInicial, numeroConta, titular);
         System.out.println("");
         System.out.println("Dados da conta");
         System.out.println(novaConta.dados(titular));
         System.out.println("Você possui um cartao de credito com limite de R$ 1000,00");
         System.out.println("");
         System.out.println("Deseja fazer um deposito?(y/n)");
-        char resp = sc.next().charAt(0);
-        if (resp=='y'){
-            novaConta.depositar(2500.00);
+        char respo = sc.next().charAt(0);
+        if (respo == 'y') {
+            System.out.println("Qual valor do desposito");
+            double depo = sc.nextDouble();
+            novaConta.depositar(depo);
             System.out.println("Dados da conta após o deposito");
             System.out.println(novaConta.dados(titular));
         }
@@ -88,7 +103,29 @@ public class App {
 
         System.out.println("");
         System.out.println("Realizando o pagamento da fatura...");
-        Pagamento.realizarPagamentoFatura(2500.00, novaConta, cartaoCredito);
+        Pagamento.realizarPagamentoFatura(valorProduto, novaConta, cartaoCredito);
+
+
+
+
+        System.out.println("-----DADOS DA NOVA CONTA POUPANÇA------");
+        Titular titular2 = new Titular("Aderbaldo","099554635");
+
+        Conta novaContaPoup = new ContaPoupanca(35000,113,titular2);
+        System.out.println("Dados da conta: ");
+        System.out.println(novaContaPoup.dados(titular2));
+        novaContaPoup.rendimento();
+        System.out.println("Dados da conta após o rendimento");
+        System.out.println(novaContaPoup.dados(titular2));
+
+        System.out.println("-----DADOS DA NOVA CONTA INVESTIMENTOS------");
+        Titular titular3 = new Titular("Jeronimo","059879635");
+        Conta novaContaInvest = new ContaInvestimento(15000,113,titular2);
+        System.out.println("Dados da conta: ");
+        System.out.println(novaContaInvest.dados(titular3));
+        novaContaInvest.rendimento();
+        System.out.println("Dados da conta após o rendimento");
+        System.out.println(novaContaInvest.dados(titular3));
 
 
     }
