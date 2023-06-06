@@ -6,8 +6,8 @@ public abstract class Conta {
     private Titular titular;
 
 
-    public Conta(double saldo, int numeroDaConta, Titular titular) {
-        this.saldo = saldo;
+    public Conta(int numeroDaConta, Titular titular) {
+        this.saldo = 0.0;
         this.numeroDaConta = numeroDaConta;
         this.titular = titular;
     }

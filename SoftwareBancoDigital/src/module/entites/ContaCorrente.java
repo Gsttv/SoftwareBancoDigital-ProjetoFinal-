@@ -4,8 +4,8 @@ public class ContaCorrente extends Conta {
 
     public double chequeEspecial;
 
-    public ContaCorrente(double saldo, int numeroDaConta, Titular titular) {
-        super(saldo, numeroDaConta, titular);
+    public ContaCorrente(int numeroDaConta, Titular titular) {
+        super(numeroDaConta, titular);
         this.chequeEspecial = 1000.00;
     }
 

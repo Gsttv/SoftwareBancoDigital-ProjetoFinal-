@@ -3,8 +3,8 @@ package module.entites;
 public class ContaPoupanca extends Conta{
 
 
-    public ContaPoupanca(double saldo, int numeroDaConta, Titular titular) {
-        super(saldo, numeroDaConta, titular);
+    public ContaPoupanca( int numeroDaConta, Titular titular) {
+        super( numeroDaConta, titular);
     }
 
     @Override

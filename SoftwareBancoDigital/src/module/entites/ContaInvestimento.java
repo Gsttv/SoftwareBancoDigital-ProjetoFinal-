@@ -3,8 +3,8 @@ package module.entites;
 public class ContaInvestimento extends Conta{
 
     private Double juros;
-    public ContaInvestimento(double saldo, int numeroDaConta, Titular titular) {
-        super(saldo, numeroDaConta, titular);
+    public ContaInvestimento(int numeroDaConta, Titular titular) {
+        super(numeroDaConta, titular);
         juros = 0.1;
     }
 

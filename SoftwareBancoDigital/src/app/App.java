@@ -33,9 +33,10 @@ public class App {
 
             }
         }
-
         Cadastro novoUsuario = new Cadastro(loginCadastro, senhaCadastro);
         System.out.println();
+
+
         System.out.println("-----REALIZE O LOGIN NA CONTA CADASTRADA------");
         System.out.println("Digite os dados cadastrados para entra no aplicativo (Caso queria trocar a senha digite 00 na senha");
         boolean a = false;
@@ -47,6 +48,7 @@ public class App {
             int senha = sc.nextInt();
             System.out.println();
             LoginNaConta logando = new LoginNaConta(login, senha, novoUsuario);
+
             a = logando.efetuarLogin();
             if (senha == 00) {
                 System.out.println("Troque sua senha");
@@ -67,8 +69,8 @@ public class App {
         Titular titular = new Titular(nome, cpf);
         System.out.print("Digite o numero da conta: ");
         int numeroConta = sc.nextInt();
-        double saldoInicial = 0.0;
-        ContaCorrente novaConta = new ContaCorrente(saldoInicial, numeroConta, titular);
+
+        Conta novaConta = new ContaCorrente(numeroConta, titular);
         System.out.println("");
         System.out.println("Dados da conta");
         System.out.println(novaConta.dados(titular));
@@ -82,61 +84,55 @@ public class App {
             double depo = sc.nextDouble();
             novaConta.depositar(depo);
 
-            char resp = sc.next().charAt(0);
-            if (resp == 'y') {
-                System.out.print("Qual o valor do deposito?: ");
-                double valorDeposito = sc.nextDouble();
-                novaConta.depositar(valorDeposito);
 
-                System.out.println("Dados da conta após o deposito");
-                System.out.println(novaConta.dados(titular));
-            }
-
-
-            System.out.println("");
-
-            System.out.println("Digite os dados da compra que você efetuou");
-            System.out.print("Data: ");
-            Date data = sdf.parse(sc.next());
-            System.out.print("Nome do produto: ");
-            String nomeProduto = sc.next();
-            System.out.print("Valor do produto: ");
-            double valorProduto = sc.nextDouble();
-
-            Compras compraRealizada = new Compras(data, nomeProduto, valorProduto);
-            CartaoCredito cartaoCredito = new CartaoCredito(compraRealizada);
-            System.out.println(cartaoCredito.toString());
-
-            System.out.println("");
-            System.out.println("Realizando o pagamento da fatura...");
-            Pagamento.realizarPagamentoFatura(valorProduto, novaConta, cartaoCredito);
-
-
-            System.out.println("-----DADOS DA NOVA CONTA POUPANÇA------");
-            Titular titular2 = new Titular("Aderbaldo", "099554635");
-
-            Conta novaContaPoup = new ContaPoupanca(35000, 113, titular2);
-            System.out.println("Dados da conta: ");
-            System.out.println(novaContaPoup.dados(titular2));
-            novaContaPoup.rendimento();
-            System.out.println("Dados da conta após o rendimento");
-            System.out.println(novaContaPoup.dados(titular2));
-
-            System.out.println("-----DADOS DA NOVA CONTA INVESTIMENTOS------");
-            Titular titular3 = new Titular("Jeronimo", "059879635");
-            Conta novaContaInvest = new ContaInvestimento(15000, 113, titular2);
-            System.out.println("Dados da conta: ");
-            System.out.println(novaContaInvest.dados(titular3));
-            novaContaInvest.rendimento();
-            System.out.println("Dados da conta após o rendimento");
-            System.out.println(novaContaInvest.dados(titular3));
-
-            Transferencia tranferencia = new Transferencia(100.00, 112, TipoDaTranferencia.TED, novaConta);
-            tranferencia.realizarTranferencia(tranferencia);
-            Emprestimo emprestimo = new Emprestimo(2000.00, sdf.parse("29/04/2023"), 12, titular);
-            System.out.println(emprestimo.toString());
-
-
+            System.out.println("Dados da conta após o deposito");
+            System.out.println(novaConta.dados(titular));
         }
+
+
+        System.out.println("");
+
+        System.out.println("Digite os dados da compra que você efetuou");
+        System.out.print("Data: ");
+        Date data = sdf.parse(sc.next());
+        System.out.print("Nome do produto: ");
+        String nomeProduto = sc.next();
+        System.out.print("Valor do produto: ");
+        double valorProduto = sc.nextDouble();
+
+        Compras compraRealizada = new Compras(data, nomeProduto, valorProduto);
+        CartaoCredito cartaoCredito = new CartaoCredito(compraRealizada);
+        System.out.println(cartaoCredito.toString());
+
+        System.out.println("");
+        System.out.println("Realizando o pagamento da fatura...");
+        Pagamento.realizarPagamentoFatura(valorProduto, novaConta, cartaoCredito);
+
+
+        System.out.println("-----DADOS DA NOVA CONTA POUPANÇA------");
+        Titular titular2 = new Titular("Aderbaldo", "099554635");
+
+        Conta novaContaPoup = new ContaPoupanca( 113, titular2);
+        System.out.println("Dados da conta: ");
+        System.out.println(novaContaPoup.dados(titular2));
+        novaContaPoup.rendimento();
+        System.out.println("Dados da conta após o rendimento");
+        System.out.println(novaContaPoup.dados(titular2));
+
+        System.out.println("-----DADOS DA NOVA CONTA INVESTIMENTOS------");
+        Titular titular3 = new Titular("Jeronimo", "059879635");
+        Conta novaContaInvest = new ContaInvestimento(113, titular2);
+        System.out.println("Dados da conta: ");
+        System.out.println(novaContaInvest.dados(titular3));
+        novaContaInvest.rendimento();
+        System.out.println("Dados da conta após o rendimento");
+        System.out.println(novaContaInvest.dados(titular3));
+
+        Transferencia tranferencia = new Transferencia(100.00, 112, TipoDaTranferencia.TED, novaConta);
+        tranferencia.realizarTranferencia(tranferencia);
+
+
+
     }
 }
+
